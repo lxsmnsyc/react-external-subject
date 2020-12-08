@@ -2,7 +2,7 @@
 
 > Turn third-party mutable sources into React-safe source
 
-[![NPM](https://img.shields.io/npm/v/react-external-subject.svg)](https://www.npmjs.com/package/react-external-subject) [![JavaScript Style Guide](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)
+[![NPM](https://img.shields.io/npm/v/react-external-subject.svg)](https://www.npmjs.com/package/react-external-subject) [![JavaScript Style Guide](https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb)](https://github.com/airbnb/javascript)[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://codesandbox.io/s/github/LXSMNSYC/react-external-subject/tree/main/example/)
 
 ## Install
 
@@ -51,7 +51,9 @@ function App() {
         By the time ObserverB renders, the source has already 
         updated, creating a "tear".
       */}
-      <ObserverB />
+      <Suspense fallback={null}>
+        <ObserverB />
+      </Suspense>
     </>
   );
 }
