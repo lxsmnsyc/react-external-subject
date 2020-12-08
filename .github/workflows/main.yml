@@ -25,11 +25,6 @@ jobs:
         run: yarn install --frozen-lockfile
         env:
           CI: true
-
-      - name: Begin bootstrap
-        run: yarn bootstrap
-        env:
-          CI: true
       
       - name: Clean
         run: yarn clean
