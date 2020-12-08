@@ -56,6 +56,13 @@ incrementAuto?.addEventListener('click', () => {
   }
 });
 
+function hash() {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+  // after the decimal.
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
+
 // Wrap our mutable source into an external subject
 const subject = createExternalSubject({
   read: () => source.state,
@@ -65,13 +72,6 @@ const subject = createExternalSubject({
 function Observer() {
   const value = useExternalSubject(subject, true);
   return <div>{value}</div>;
-}
-
-function hash() {
-  // Math.random should be unique because of its seeding algorithm.
-  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-  // after the decimal.
-  return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 function App() {
