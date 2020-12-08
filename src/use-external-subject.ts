@@ -16,6 +16,17 @@ export default function useExternalSubject<T>(
   // This effect makes sure that the component
   // is always up-to-date every re-render
   useIsomorphicEffect(() => {
+    // If there's no ongoing request, try to request an update.
+    if (!subject.getRequest()) {
+      subject.requestUpdate();
+      const ongoing = subject.getRequest();
+      if (ongoing) {
+        forceUpdate();
+        return undefined;
+      }
+    }
+
+    // Otherwise, schedule a state check on a latter time.
     const timeout = setTimeout(() => {
       const afterOngoing = subject.getRequest();
       if (afterOngoing) {
