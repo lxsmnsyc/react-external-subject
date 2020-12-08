@@ -4,8 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vite App</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #root {
+      width: 100%;
+      
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    div {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: yellow;
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <p>Only the numbers below are part of React. There are 500 components observing an external source which is controlled by the buttons below.</p>
+    <button id="increment">Increment</button>
+    <button id="increment-multi">Increment multi</button>
+    <button id="increment-auto">Increment auto</button>
+  </div>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
