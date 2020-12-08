@@ -16,18 +16,24 @@ export default function useExternalSubject<T>(
   // This effect makes sure that the component
   // is always up-to-date every re-render
   useIsomorphicEffect(() => {
-    const afterOngoing = subject.getRequest();
-    if (afterOngoing) {
-      forceUpdate();
-      return;
-    }
+    const timeout = setTimeout(() => {
+      const afterOngoing = subject.getRequest();
+      if (afterOngoing) {
+        forceUpdate();
+        return;
+      }
 
-    // Check for tearing
-    subject.requestUpdate();
-    const currentOngoing = subject.getRequest();
-    if (currentOngoing) {
-      forceUpdate();
-    }
+      // Check for tearing
+      subject.requestUpdate();
+      const currentOngoing = subject.getRequest();
+      if (currentOngoing) {
+        forceUpdate();
+      }
+    });
+
+    return () => {
+      clearTimeout(timeout);
+    };
   }); // No dependencies
 
   const cached = subject.getCachedValue();
