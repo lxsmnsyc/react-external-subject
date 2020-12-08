@@ -1901,10 +1901,10 @@ react-dom@^17.0.0:
     object-assign "^4.1.1"
     scheduler "^0.20.1"
 
-react-external-subject@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/react-external-subject/-/react-external-subject-0.1.0.tgz#a0f9f71fc671b47d51cf4efae6fc1e0eb68022bb"
-  integrity sha512-l0qB27t2KCWEjT7NyljbBwk5iQYEYiejMVdW+eUnTEWSs8KbhHWW2NAZR+pQXslbABpHX1qbXNbeuIeU1bB0Aw==
+react-external-subject@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-external-subject/-/react-external-subject-0.1.2.tgz#534bc0f5a625f8bef70331ae438a2c741e1e770a"
+  integrity sha512-jGeJJ1kTYLddWPTzUmnLPtF4hm/DabWS/99osdjoD/1M7iDoeimz1YoWrcjbQgq644ZWFt2crIE/BwLYIHUeCA==
   dependencies:
     "@lyonph/react-hooks" "^0.1.2"
 
