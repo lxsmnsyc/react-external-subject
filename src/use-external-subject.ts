@@ -7,14 +7,19 @@ export default function useExternalSubject<T>(
 ): T {
   const forceUpdate = useForceUpdate();
 
-  // Register effects
+  // Subscribe to further updates
   useIsomorphicEffect(() => {
     const unsubscribe = subject.subscribe(forceUpdate);
+    return unsubscribe;
+  }, [subject]);
 
+  // This effect makes sure that the component
+  // is always up-to-date every re-render
+  useIsomorphicEffect(() => {
     const afterOngoing = subject.getRequest();
     if (afterOngoing) {
       forceUpdate();
-      return unsubscribe;
+      return;
     }
 
     // Check for tearing
@@ -22,10 +27,8 @@ export default function useExternalSubject<T>(
     const currentOngoing = subject.getRequest();
     if (currentOngoing) {
       forceUpdate();
-      return unsubscribe;
     }
-    return unsubscribe;
-  }, [subject]);
+  }); // No dependencies
 
   const cached = subject.getCachedValue();
 
