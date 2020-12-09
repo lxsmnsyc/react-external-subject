@@ -497,10 +497,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@lyonph/react-hooks@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@lyonph/react-hooks/-/react-hooks-0.1.2.tgz#add78885179d427e62613fdf19eb712ffcba349e"
-  integrity sha512-dum2rHq1TDcOq1TrD2Kg7RmOPAfyrEdE9+tS9FXOX0YvZmchiXxLyyekSft6qYuqPz01pQ7PiL6LfDchHRjROg==
+"@lyonph/react-hooks@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@lyonph/react-hooks/-/react-hooks-0.2.0.tgz#a82de3e610c8621650d3ed012d0bd07ae2df3bb6"
+  integrity sha512-jY17Bl08TWRwByWdJ/ZCm2oEO1TgHEWKyEPgJGoqMWCjamn/2I5dHGAgAUA4NosaY81u8RXj42rsms5+Zl18bg==
 
 "@next/eslint-plugin-next@^10.0.3":
   version "10.0.3"
