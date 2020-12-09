@@ -1,5 +1,5 @@
 {
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -11,7 +11,13 @@
   },
   "license": "MIT",
   "keywords": [
-    "pridepack"
+    "pridepack",
+    "react",
+    "use-mutable-source",
+    "use-subscription",
+    "subscription",
+    "observer",
+    "subject"
   ],
   "name": "react-external-subject",
   "module": "dist/react-external-subject.esm.js",
@@ -28,7 +34,7 @@
     "@types/react": "^17.0.0",
     "eslint": "^7.15.0",
     "eslint-config-lxsmnsyc": "^0.1.20",
-    "pridepack": "^0.3.7",
+    "pridepack": "^0.4.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-test-renderer": "^17.0.1",
@@ -50,5 +56,16 @@
   },
   "dependencies": {
     "@lyonph/react-hooks": "^0.1.2"
+  },
+  "description": "Wrap mutable sources into React-safe mutable source",
+  "repository": "https://github.com/lxsmnsyc/react-external-subject.git",
+  "homepage": "https://github.com/lxsmnsyc/react-external-subject",
+  "bugs": {
+    "url": "https://github.com/lxsmnsyc/react-external-subject/issues"
+  },
+  "author": "Alexis Munsayac <alexis.munsayac@gmail.com>",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
   }
 }
