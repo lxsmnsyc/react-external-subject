@@ -9,19 +9,32 @@ function defaultShouldUpdate<T>(a: T, b: T): boolean {
   return !Object.is(a, b);
 }
 
+interface CacheRef<T> {
+  value: T;
+}
+
 export default function createExternalSubject<T>(
   options: ExternalSubjectOptions<T>,
 ): ExternalSubject<T> {
   const shouldUpdate = options.shouldUpdate ?? defaultShouldUpdate;
 
-  let cache = options.read();
+  let cache: CacheRef<T> | undefined;
 
   const listeners = new Set<() => void>();
 
   let request: UpdateRequest | undefined;
 
+  const getCachedValue = () => {
+    if (!cache) {
+      cache = {
+        value: options.read(),
+      };
+    }
+    return cache.value;
+  };
+
   const requestUpdate = () => {
-    if (shouldUpdate(cache, options.read())) {
+    if (shouldUpdate(getCachedValue(), options.read())) {
       if (request) {
         request.alive = false;
       }
@@ -30,7 +43,9 @@ export default function createExternalSubject<T>(
           if (request?.alive) {
             request = undefined;
 
-            cache = options.read();
+            if (cache) {
+              cache.value = options.read();
+            }
 
             listeners.forEach((listener) => {
               listener();
@@ -83,7 +98,7 @@ export default function createExternalSubject<T>(
     shouldUpdate,
     requestUpdate,
     getRequest: () => request,
-    getCachedValue: () => cache,
+    getCachedValue,
     getCurrentValue: options.read,
     destroy,
   };
