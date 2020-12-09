@@ -39,4 +39,6 @@ export interface ExternalSubject<T> {
    */
   shouldUpdate: ExternalSubjectShouldUpdate<T>;
   subscribe: ExternalSubjectSubscribe;
+
+  destroy: () => void;
 }

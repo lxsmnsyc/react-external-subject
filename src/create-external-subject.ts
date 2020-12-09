@@ -42,10 +42,11 @@ export default function createExternalSubject<T>(
     }
   };
 
+  let unsubscribe: (() => void) | undefined | void;
+
   const subscribe: ExternalSubjectSubscribe = (handler) => {
     listeners.add(handler);
 
-    let unsubscribe: (() => void) | undefined;
     if (options.lazySubscribe && options.subscribe && listeners.size === 1) {
       const unsub = options.subscribe(requestUpdate);
 
@@ -57,13 +58,25 @@ export default function createExternalSubject<T>(
     return () => {
       listeners.delete(handler);
 
-      unsubscribe?.();
+      if (options.lazySubscribe && unsubscribe) {
+        unsubscribe();
+      }
     };
   };
 
   if (!options.lazySubscribe && options.subscribe) {
-    options.subscribe(requestUpdate);
+    unsubscribe = options.subscribe(requestUpdate);
   }
+
+  const destroy = () => {
+    if (request) {
+      request.alive = false;
+    }
+    listeners.clear();
+    if (unsubscribe) {
+      unsubscribe();
+    }
+  };
 
   return {
     subscribe,
@@ -72,5 +85,6 @@ export default function createExternalSubject<T>(
     getRequest: () => request,
     getCachedValue: () => cache,
     getCurrentValue: options.read,
+    destroy,
   };
 }
