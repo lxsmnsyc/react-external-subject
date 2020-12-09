@@ -48,29 +48,25 @@ function useExternalSubjectInternal<T>(
     };
   }); // No dependencies
 
-  const cached = subject.getCachedValue();
-
   // Suspend UI if there's an ongoing request
   const ongoing = subject.getRequest();
   if (ongoing) {
     if (suspense) {
       throw ongoing.promise;
     }
-    return cached;
-  }
-
-  // Check for tearing
-  subject.requestUpdate();
-  // Suspend if tear is detected
-  const current = subject.getRequest();
-  if (current) {
-    if (suspense) {
-      throw current.promise;
+  } else {
+    // Check for tearing
+    subject.requestUpdate();
+    // Suspend if tear is detected
+    const current = subject.getRequest();
+    if (current) {
+      if (suspense) {
+        throw current.promise;
+      }
     }
-    return cached;
   }
 
-  return subject.getCurrentValue();
+  return subject.getCachedValue();
 }
 
 export default function useExternalSubject<T>(
