@@ -1,7 +1,8 @@
 import { useForceUpdate, useIsomorphicEffect } from '@lyonph/react-hooks';
+import { useDebugValue } from 'react';
 import { ExternalSubject } from './types';
 
-export default function useExternalSubject<T>(
+function useExternalSubjectInternal<T>(
   subject: ExternalSubject<T>,
   suspense = false,
 ): T {
@@ -70,4 +71,13 @@ export default function useExternalSubject<T>(
   }
 
   return subject.getCurrentValue();
+}
+
+export default function useExternalSubject<T>(
+  subject: ExternalSubject<T>,
+  suspense = false,
+): T {
+  const value = useExternalSubjectInternal(subject, suspense);
+  useDebugValue(value);
+  return value;
 }
