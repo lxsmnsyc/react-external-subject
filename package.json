@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -55,7 +55,7 @@
     "watch": "pridepack watch"
   },
   "dependencies": {
-    "@lyonph/react-hooks": "^0.1.2"
+    "@lyonph/react-hooks": "^0.2.0"
   },
   "description": "Wrap mutable sources into React-safe mutable source",
   "repository": "https://github.com/lxsmnsyc/react-external-subject.git",
