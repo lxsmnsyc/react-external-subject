@@ -48,7 +48,7 @@ export default function createExternalSubject<T>(
         request.alive = false;
       }
       request = {
-        promise: Promise.resolve().then(() => {
+        promise: Promise.resolve().then(() => new Promise((resolve) => {
           if (request?.alive) {
             request = undefined;
 
@@ -61,10 +61,11 @@ export default function createExternalSubject<T>(
                 listeners.forEach((listener) => {
                   listener();
                 });
+                resolve();
               });
             }
           }
-        }),
+        })),
         alive: true,
       };
     }
