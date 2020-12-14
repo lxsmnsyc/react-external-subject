@@ -1,5 +1,9 @@
-import React, { Suspense } from 'react';
-import { createExternalSubject, useExternalSubject } from 'react-external-subject';
+import React from 'react';
+import {
+  ExternalSubjectSynchronizer,
+  createExternalSubject,
+  useExternalSubject,
+} from 'react-external-subject';
 
 const increment = document.getElementById('increment');
 const incrementMulti = document.getElementById('increment-multi');
@@ -80,9 +84,9 @@ function App() {
     items.push(<Observer key={hash()} />)
   }
   return (
-    <Suspense fallback={null}>
+    <ExternalSubjectSynchronizer>
       {items}
-    </Suspense>
+    </ExternalSubjectSynchronizer>
   );
 }
 

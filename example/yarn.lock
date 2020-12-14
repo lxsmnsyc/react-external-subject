@@ -196,10 +196,10 @@
   dependencies:
     vary "^1.1.2"
 
-"@lyonph/react-hooks@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@lyonph/react-hooks/-/react-hooks-0.1.2.tgz#add78885179d427e62613fdf19eb712ffcba349e"
-  integrity sha512-dum2rHq1TDcOq1TrD2Kg7RmOPAfyrEdE9+tS9FXOX0YvZmchiXxLyyekSft6qYuqPz01pQ7PiL6LfDchHRjROg==
+"@lyonph/react-hooks@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@lyonph/react-hooks/-/react-hooks-0.2.1.tgz#f08eab2283160ed71d5d112451899645d6d368bc"
+  integrity sha512-2nOISFMxhEKVDQcOAUpf9/qPWkPUsXy71P6hrvt4iU2L4hl5kJgyY/pBe/I6yJfvQZzUp3b6/ONE2m0A7todbQ==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
@@ -1901,12 +1901,12 @@ react-dom@^17.0.0:
     object-assign "^4.1.1"
     scheduler "^0.20.1"
 
-react-external-subject@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/react-external-subject/-/react-external-subject-0.1.2.tgz#534bc0f5a625f8bef70331ae438a2c741e1e770a"
-  integrity sha512-jGeJJ1kTYLddWPTzUmnLPtF4hm/DabWS/99osdjoD/1M7iDoeimz1YoWrcjbQgq644ZWFt2crIE/BwLYIHUeCA==
+react-external-subject@^0.3.1-alpha.1:
+  version "0.3.1-alpha.1"
+  resolved "https://registry.yarnpkg.com/react-external-subject/-/react-external-subject-0.3.1-alpha.1.tgz#ca199fb04c985a6003026657bfd46e4c6ecf6e9f"
+  integrity sha512-rKh+0T4f5EjoBcI48Jr97YeO1DZgwF+1mHwg+4c1YFBwjk51sHFkWj87DUiupUSGwOeP/RzDJ6k/HWPckvoBCQ==
   dependencies:
-    "@lyonph/react-hooks" "^0.1.2"
+    "@lyonph/react-hooks" "^0.2.1"
 
 react-refresh@^0.8.2:
   version "0.8.3"
