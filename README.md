@@ -13,7 +13,11 @@ yarn add react-external-subject
 ## Usage
 
 ```tsx
-import { createExternalSubject, useExternalSubject } from 'react-external-subject';
+import {
+  ExternalSubjectSynchronizer,
+  createExternalSubject,
+  useExternalSubject,
+  } from 'react-external-subject';
 
 // An example of a mutable source
 let source = 0;
