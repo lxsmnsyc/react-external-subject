@@ -44,17 +44,15 @@ function Effectful() {
 
 function App() {
   return (
-    <>
+    <ExternalSubjectSynchronizer>
       <ObserverA />
       <Effectful />
       {/*
         By the time ObserverB renders, the source has already 
         updated, creating a "tear".
       */}
-      <Suspense fallback={null}>
-        <ObserverB />
-      </Suspense>
-    </>
+      <ObserverB />
+    </ExternalSubjectSynchronizer>
   );
 }
 ```
