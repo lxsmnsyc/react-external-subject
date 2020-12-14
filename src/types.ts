@@ -1,3 +1,5 @@
+export type ExternalSubjectSynchronize = (cb: () => void) => void;
+
 export type ExternalSubjectSubscribe =
   (handler: () => void) => void | undefined | (() => void);
 
@@ -39,6 +41,8 @@ export interface ExternalSubject<T> {
    */
   shouldUpdate: ExternalSubjectShouldUpdate<T>;
   subscribe: ExternalSubjectSubscribe;
+
+  setSynchronizer: (sync: ExternalSubjectSynchronize) => void;
 
   destroy: () => void;
 }

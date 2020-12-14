@@ -2,6 +2,7 @@ import {
   ExternalSubject,
   ExternalSubjectOptions,
   ExternalSubjectSubscribe,
+  ExternalSubjectSynchronize,
   UpdateRequest,
 } from './types';
 
@@ -33,6 +34,14 @@ export default function createExternalSubject<T>(
     return cache.value;
   };
 
+  let synchronize: ExternalSubjectSynchronize;
+
+  const setSynchronizer = (sync: ExternalSubjectSynchronize) => {
+    if (!synchronize) {
+      synchronize = sync;
+    }
+  };
+
   const requestUpdate = () => {
     if (shouldUpdate(getCachedValue(), options.read())) {
       if (request) {
@@ -47,9 +56,13 @@ export default function createExternalSubject<T>(
               cache.value = options.read();
             }
 
-            listeners.forEach((listener) => {
-              listener();
-            });
+            if (synchronize) {
+              synchronize(() => {
+                listeners.forEach((listener) => {
+                  listener();
+                });
+              });
+            }
           }
         }),
         alive: true,
@@ -100,6 +113,7 @@ export default function createExternalSubject<T>(
     getRequest: () => request,
     getCachedValue,
     getCurrentValue: options.read,
+    setSynchronizer,
     destroy,
   };
 }

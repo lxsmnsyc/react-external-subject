@@ -1,7 +1,11 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { createExternalSubject, useExternalSubject } from '../src';
+import {
+  createExternalSubject,
+  ExternalSubjectSynchronizer,
+  useExternalSubject,
+} from '../src';
 
 describe('useExternalSubject', () => {
   it('should be able to detect tearing after use', async () => {
@@ -22,10 +26,10 @@ describe('useExternalSubject', () => {
     };
 
     render((
-      <>
+      <ExternalSubjectSynchronizer>
         <Read />
         <Effectful />
-      </>
+      </ExternalSubjectSynchronizer>
     ));
 
     expect(await waitFor(() => screen.getByTitle('reader'))).toContainHTML('1');
@@ -48,10 +52,10 @@ describe('useExternalSubject', () => {
     };
 
     render((
-      <>
+      <ExternalSubjectSynchronizer>
         <Effectful />
         <Read />
-      </>
+      </ExternalSubjectSynchronizer>
     ));
 
     expect(await waitFor(() => screen.getByTitle('reader'))).toContainHTML('1');
@@ -74,11 +78,11 @@ describe('useExternalSubject', () => {
     };
 
     render((
-      <>
+      <ExternalSubjectSynchronizer>
         <Effectful value={2} />
         <Read />
         <Effectful value={1} />
-      </>
+      </ExternalSubjectSynchronizer>
     ));
 
     expect(await waitFor(() => screen.getByTitle('reader'))).toContainHTML('1');
@@ -106,12 +110,12 @@ describe('useExternalSubject', () => {
     };
 
     render((
-      <>
+      <ExternalSubjectSynchronizer>
         <Effectful value={2} />
         <Read />
         <Effectful value={1} />
         <SecondRead />
-      </>
+      </ExternalSubjectSynchronizer>
     ));
 
     expect(await waitFor(() => screen.getByTitle('reader'))).toContainHTML('1');
@@ -135,10 +139,10 @@ describe('useExternalSubject', () => {
     };
 
     render((
-      <Suspense fallback={null}>
+      <ExternalSubjectSynchronizer>
         <Read />
         <Effectful />
-      </Suspense>
+      </ExternalSubjectSynchronizer>
     ));
 
     expect(await waitFor(() => screen.getByTitle('reader'))).toContainHTML('1');
@@ -161,10 +165,10 @@ describe('useExternalSubject', () => {
     };
 
     render((
-      <Suspense fallback={null}>
+      <ExternalSubjectSynchronizer>
         <Effectful />
         <Read />
-      </Suspense>
+      </ExternalSubjectSynchronizer>
     ));
 
     expect(await waitFor(() => screen.getByTitle('reader'))).toContainHTML('1');
@@ -187,11 +191,11 @@ describe('useExternalSubject', () => {
     };
 
     render((
-      <Suspense fallback={null}>
+      <ExternalSubjectSynchronizer>
         <Effectful value={2} />
         <Read />
         <Effectful value={1} />
-      </Suspense>
+      </ExternalSubjectSynchronizer>
     ));
 
     expect(await waitFor(() => screen.getByTitle('reader'))).toContainHTML('1');
@@ -219,12 +223,12 @@ describe('useExternalSubject', () => {
     };
 
     render((
-      <Suspense fallback={null}>
+      <ExternalSubjectSynchronizer>
         <Effectful value={2} />
         <Read />
         <Effectful value={1} />
         <SecondRead />
-      </Suspense>
+      </ExternalSubjectSynchronizer>
     ));
 
     expect(await waitFor(() => screen.getByTitle('reader'))).toContainHTML('1');
