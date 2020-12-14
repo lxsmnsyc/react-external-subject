@@ -63,6 +63,8 @@ export default function createExternalSubject<T>(
                 });
                 resolve();
               });
+            } else {
+              resolve();
             }
           }
         })),
