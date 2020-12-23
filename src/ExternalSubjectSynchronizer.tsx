@@ -30,15 +30,19 @@ interface ExternalSubjectSynchronizerProps {
 export default function ExternalSubjectSynchronizer(
   { children }: ExternalSubjectSynchronizerProps,
 ): JSX.Element {
-  const [state, setState] = useState<() => void>();
+  const [state, setState] = useState<(() => void)[]>([]);
 
   const synchronize = useConstantCallback<ExternalSubjectSynchronize>((cb) => {
-    setState(() => cb);
+    setState((current) => [...current, cb]);
   });
 
   useEffect(() => {
-    if (state) {
-      state();
+    if (state.length) {
+      setState([]);
+
+      state.forEach((update) => {
+        update();
+      });
     }
   }, [state]);
 
