@@ -51,20 +51,20 @@ export default function createExternalSubject<T>(
         promise: Promise.resolve().then(() => new Promise((resolve) => {
           if (request?.alive) {
             request = undefined;
-
-            if (cache) {
-              cache.value = options.read();
-            }
+            const onResolve = () => {
+              if (cache) {
+                cache.value = options.read();
+              }
+              listeners.forEach((listener) => {
+                listener();
+              });
+              resolve();
+            };
 
             if (synchronize) {
-              synchronize(() => {
-                listeners.forEach((listener) => {
-                  listener();
-                });
-                resolve();
-              });
+              synchronize(onResolve);
             } else {
-              resolve();
+              onResolve();
             }
           }
         })),
